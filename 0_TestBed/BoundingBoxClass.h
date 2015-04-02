@@ -11,7 +11,7 @@ Date: 2015/03
 class BoundingBoxClass
 {
 	bool m_bInitialized; //Has the elements of this object been initialized before?
-	float m_fExtents[3];//The extents of the bounding box
+	vector3 m_fExtents;//The extents of the bounding box
 	vector3 m_v3Centroid;//Center point of the model, the origin in GSpace in which the Box is going to be located
 	String m_sName;//Name of the BoundingBox (to relate to the instance)
 
@@ -52,6 +52,8 @@ public:
 	*/
 	float GetZExtents(void);
 
+	vector3 GetExtents(void);
+
 	/*
 	GetCentroid
 		Returns the origin of the Cartesian Coordinate System in which the Box is drawn in GSpace
@@ -86,4 +88,4 @@ private:
 };
 
 
-#endif //__BOUNDINGBoxCLASS_H__
+#endif //__BOUNDINGBOXCLASS_H__

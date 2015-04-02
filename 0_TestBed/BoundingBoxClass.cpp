@@ -3,9 +3,7 @@
 void BoundingBoxClass::Init(void)
 {
 	m_bInitialized = false;
-	m_fExtents[0] = 0.0f;
-	m_fExtents[1] = 0.0f;
-	m_fExtents[2] = 0.0f;
+	m_fExtents = vector3(0.0f);
 	m_v3Centroid = vector3(0.0f);
 	m_sName = "NULL";
 }
@@ -25,8 +23,7 @@ BoundingBoxClass::BoundingBoxClass(){Init();}
 BoundingBoxClass::BoundingBoxClass(BoundingBoxClass const& other)
 {
 	m_bInitialized = other.m_bInitialized;
-	for(int i = 0; i < 3; i++)
-		m_fExtents[i] = other.m_fExtents[i];
+	m_fExtents = other.m_fExtents;
 	m_v3Centroid = other.m_v3Centroid;
 	m_sName = other.m_sName;
 }
@@ -45,9 +42,11 @@ BoundingBoxClass::~BoundingBoxClass(){Release();};
 //Accessors
 bool BoundingBoxClass::IsInitialized(void){ return m_bInitialized; }
 
-float BoundingBoxClass::GetXExtents(void) { return this->m_fExtents[0]; }
-float BoundingBoxClass::GetYExtents(void) { return this->m_fExtents[1]; }
-float BoundingBoxClass::GetZExtents(void) { return this->m_fExtents[2]; }
+float BoundingBoxClass::GetXExtents(void) { return this->m_fExtents.x; }
+float BoundingBoxClass::GetYExtents(void) { return this->m_fExtents.y; }
+float BoundingBoxClass::GetZExtents(void) { return this->m_fExtents.z; }
+
+vector3 BoundingBoxClass::GetExtents(void) { return this->m_fExtents; }
 
 vector3 BoundingBoxClass::GetCentroid(void){ return m_v3Centroid; }
 String BoundingBoxClass::GetName(void){return m_sName;}
@@ -89,9 +88,7 @@ void BoundingBoxClass::GenerateBoundingBox(String a_sInstanceName)
 
 		auto extents = (v3Max - v3Min) / 2.0f;
 		
-		m_fExtents[0] = extents.x;
-		m_fExtents[1] = extents.y;
-		m_fExtents[2] = extents.z;
+		m_fExtents = extents;
 
 		m_bInitialized = true;
 	}
