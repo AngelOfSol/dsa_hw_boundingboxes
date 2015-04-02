@@ -2,7 +2,7 @@
 void ApplicationClass::ProcessKeyboard(void)
 {
 	bool bModifier = false;
-	float fSpeed = 0.1f;
+	fSpeed = 0.1f;
 
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{

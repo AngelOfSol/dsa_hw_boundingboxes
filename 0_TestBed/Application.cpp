@@ -15,7 +15,11 @@ void ApplicationClass::InitAppVariables()
 	pBoundingSphere1 = new BoundingSphereClass();
 	pBoundingSphere2 = new BoundingSphereClass();
 
+	pBoundingBox1 = new BoundingBoxClass();
+	pBoundingBox2 = new BoundingBoxClass();
+
 	m_pBSMngr = BoundingSphereManagerSingleton::GetInstance();
+	m_pBBMngr = BoundingBoxManagerSingleton::GetInstance();
 
 	m_m4Creeper = glm::translate(vector3(3.0f,0.0f,0.0f));
 
@@ -104,21 +108,21 @@ void ApplicationClass::Update (void)
 #pragma endregion
 
 #pragma region Bounding Sphere Manager
-	m_pBSMngr->GenerateBoundingSphere("Steve");
-	m_pBSMngr->GenerateBoundingSphere("Creeper");
-	m_pBSMngr->GenerateBoundingSphere("Cow");
-	m_pBSMngr->GenerateBoundingSphere("Zombie");
-	m_pBSMngr->GenerateBoundingSphere("Pig");
+	m_pBBMngr->GenerateBoundingBox("Steve");
+	m_pBBMngr->GenerateBoundingBox("Creeper");
+	m_pBBMngr->GenerateBoundingBox("Cow");
+	m_pBBMngr->GenerateBoundingBox("Zombie");
+	m_pBBMngr->GenerateBoundingBox("Pig");
 
-	m_pBSMngr->SetBoundingSphereSpace(m4Steve, "Steve");
-	m_pBSMngr->SetBoundingSphereSpace(m_m4Creeper, "Creeper");
-	m_pBSMngr->SetBoundingSphereSpace(m4Cow, "Cow");
-	m_pBSMngr->SetBoundingSphereSpace(m4Pig, "Pig");
-	m_pBSMngr->SetBoundingSphereSpace(m4Zombie, "Zombie");
+	m_pBBMngr->SetBoundingBoxSpace(m4Steve, "Steve");
+	m_pBBMngr->SetBoundingBoxSpace(m_m4Creeper, "Creeper");
+	m_pBBMngr->SetBoundingBoxSpace(m4Cow, "Cow");
+	m_pBBMngr->SetBoundingBoxSpace(m4Pig, "Pig");
+	m_pBBMngr->SetBoundingBoxSpace(m4Zombie, "Zombie");
 
-	m_pBSMngr->CalculateCollision();
+	m_pBBMngr->CalculateCollision();
 
-	m_pBSMngr->AddSphereToRenderList("ALL");
+	m_pBBMngr->AddBoxToRenderList("ALL");
 #pragma endregion
 
 	m_pMeshMngr->AddInstanceToRenderList();

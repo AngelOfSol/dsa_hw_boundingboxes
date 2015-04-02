@@ -115,7 +115,7 @@ void BoundingBoxManagerSingleton::AddBoxToRenderList(String a_sInstanceName)
 	}
 }
 
-void BoundingBoxManagerSingleton::CalculateCollision(void)
+bool BoundingBoxManagerSingleton::CalculateCollision(void)
 {
 	//Create a placeholder for all center points
 	std::vector<vector3> lCentroid;
@@ -141,11 +141,15 @@ void BoundingBoxManagerSingleton::CalculateCollision(void)
 
 				//If the distance between the center of both Boxs is less than the sum of their radius there is a collision
 				if(posDiff.x <= sumOfExtents.x && posDiff.y <= sumOfExtents.y && posDiff.z <= sumOfExtents.z)
+				{
 					m_lColor[i] = m_lColor[j] = MERED; //We make the Boxs red
+					return true;
+				}
 			}
 		}
 	}
 	
+	return false;
 
 	////This way is more optimal, just half the checks are needed
 	//for(int i = 0; i < m_nBoxs - 1; i++)

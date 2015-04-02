@@ -53,7 +53,7 @@ public:
 	CalculateCollision
 		Calculates the collision among all the Boxs in the list
 	*/
-	void CalculateCollision(void);
+	bool CalculateCollision(void);
 
 private:
 	/* Constructor */
